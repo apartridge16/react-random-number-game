@@ -1,12 +1,12 @@
-import './GuessingGame.css';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import React, { useEffect, useState } from 'react';
+import "./GuessingGame.css";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import React, { useEffect, useState } from "react";
 
 function GuessingGame() {
   const [luckyNumber, setLuckyNumber] = useState(LuckyNumber());
-  const [currentGuess, setGuess] = useState('');
-  const [message, setMessage] = useState('Start Guessing!');
+  const [currentGuess, setGuess] = useState("");
+  const [message, setMessage] = useState("Start Guessing!");
   const [numGuesses, setNumGuesses] = useState(0);
 
   function LuckyNumber() {
@@ -14,8 +14,8 @@ function GuessingGame() {
   }
 
   useEffect(() => {
-    const luckyNum = localStorage.getItem('luckyNumber');
-    const numGuesses = localStorage.getItem('numGuesses');
+    const luckyNum = localStorage.getItem("luckyNumber");
+    const numGuesses = localStorage.getItem("numGuesses");
     if (luckyNum) {
       setLuckyNumber(JSON.parse(luckyNum));
     }
@@ -25,8 +25,8 @@ function GuessingGame() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('luckyNumber', JSON.stringify(luckyNumber));
-    localStorage.setItem('numGuesses', JSON.stringify(numGuesses));
+    localStorage.setItem("luckyNumber", JSON.stringify(luckyNumber));
+    localStorage.setItem("numGuesses", JSON.stringify(numGuesses));
   }, [luckyNumber, numGuesses]);
 
   function handleChange(event) {
@@ -36,20 +36,21 @@ function GuessingGame() {
   function handleReset() {
     setLuckyNumber(LuckyNumber());
     setNumGuesses(0);
-    setGuess('');
-    setMessage('Start Guessing!');
+    setGuess("");
+    setMessage("Start Guessing!");
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let guess = parseInt(currentGuess);
     if (guess === luckyNumber) {
-      setMessage('You guessed right!');
+      setMessage("You guessed right!");
     } else if (guess < luckyNumber) {
-      setMessage('Number is low');
+      setMessage("Number is low");
     } else if (guess > luckyNumber) {
-      setMessage('Number is high');
+      setMessage("Number is high");
     }
+    e.target.reset();
   };
 
   function incrementGuess() {
@@ -58,28 +59,28 @@ function GuessingGame() {
 
   return (
     <body>
-      <h1 className="heading">Random Number Guessing Game</h1>
+      <h1 className='heading'>Random Number Guessing Game</h1>
       <p>
         I am thinking of a number between 1 and 100. Guess the Lucky Number!
       </p>
       <p>You have made {numGuesses} guesses</p>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
+        <Form.Group className='mb-3'>
           <Form.Control
-            type="text"
-            placeholder="Guess Here!"
+            type='text'
+            placeholder='Guess Here!'
             onChange={handleChange}
-            id="control-form"
+            id='control-form'
           />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={incrementGuess}>
+        <Button variant='primary' type='submit' onClick={incrementGuess}>
           Guess
         </Button>
-        <Button variant="danger" type="reset" onClick={handleReset}>
+        <Button variant='danger' type='reset' onClick={handleReset}>
           Reset
         </Button>
       </Form>
-      <Form.Label className="text">{message}</Form.Label>
+      <Form.Label className='text'>{message}</Form.Label>
     </body>
   );
 }
