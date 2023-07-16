@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-random-number-game/static/css/main.14b53041.css",
+    "main.js": "/react-random-number-game/static/js/main.364fb285.js",
+    "index.html": "/react-random-number-game/index.html",
+    "main.14b53041.css.map": "/react-random-number-game/static/css/main.14b53041.css.map",
+    "main.364fb285.js.map": "/react-random-number-game/static/js/main.364fb285.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.14b53041.css",
+    "static/js/main.364fb285.js"
+  ]
+}
